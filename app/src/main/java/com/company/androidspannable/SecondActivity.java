@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
@@ -50,8 +51,9 @@ public class SecondActivity extends AppCompatActivity {
             }
         };
          spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-          spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+          spannableString.setSpan(clickableSpan, name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       textMailAmdName.setText( spannableString );
+      textMailAmdName.setMovementMethod(LinkMovementMethod.getInstance());
         imageView = findViewById(R.id.imageV);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
