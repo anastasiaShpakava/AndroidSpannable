@@ -3,6 +3,9 @@ package com.company.androidspannable;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +26,13 @@ public class SecondActivity extends AppCompatActivity {
         textNumber.setText(number);
         String name = getIntent().getStringExtra("name");
         textMailAmdName = findViewById(R.id.textMailAndName);
-        textMailAmdName.setText(name + " email");
+        String lastWord = "email";
+        textMailAmdName.setText(name + " " + lastWord);
+
+        Spannable spannable = new SpannableString(name+lastWord);
+        spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+       textMailAmdName.setText( spannable );
         imageView = findViewById(R.id.imageV);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
