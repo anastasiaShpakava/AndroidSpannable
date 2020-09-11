@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SecondActivity extends AppCompatActivity {
     private TextView textNumber;
     private ImageView imageView;
+    private TextView textMailAmdName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,9 @@ public class SecondActivity extends AppCompatActivity {
         String number = getIntent().getStringExtra("number");
         textNumber = findViewById(R.id.textNumber);
         textNumber.setText(number);
+        String name = getIntent().getStringExtra("name");
+        textMailAmdName = findViewById(R.id.textMailAndName);
+        textMailAmdName.setText(name + " email");
         imageView = findViewById(R.id.imageV);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
