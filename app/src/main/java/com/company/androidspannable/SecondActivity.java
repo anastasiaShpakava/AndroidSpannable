@@ -5,11 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SecondActivity extends AppCompatActivity {
@@ -26,13 +28,30 @@ public class SecondActivity extends AppCompatActivity {
         textNumber.setText(number);
         String name = getIntent().getStringExtra("name");
         textMailAmdName = findViewById(R.id.textMailAndName);
-        String lastWord = "email";
-        textMailAmdName.setText(name + " " + lastWord);
 
-        Spannable spannable = new SpannableString(name+lastWord);
-        spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-       textMailAmdName.setText( spannable );
+        String lastWord = "email";
+        String text = name + lastWord;
+        SpannableString spannableString = new SpannableString(text);
+     // textMailAmdName.setText(name + " " + lastWord);
+
+      //  Spannable spannable = new SpannableString(name+lastWord);
+      //  spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+     //   spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                startActivity(new Intent(Intent.ACTION_SEND));
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"shpakavaa@gmail.com"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+                emailIntent.setType("message/rfc822");
+                startActivity(emailIntent);
+            }
+        };
+         spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+          spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+      textMailAmdName.setText( spannableString );
         imageView = findViewById(R.id.imageV);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -49,12 +68,12 @@ public class SecondActivity extends AppCompatActivity {
     String subject = "Test";
     String message = "Test";
 
-    public void sendEmail (View v){
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"shpakavaa@gmail.com"});
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-        emailIntent.setType("message/rfc822");
-        startActivity(emailIntent);
-    }
+//    public void sendEmail (View v){
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"shpakavaa@gmail.com"});
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+//        emailIntent.setType("message/rfc822");
+//        startActivity(emailIntent);
+//    }
 }
