@@ -33,15 +33,9 @@ public class SecondActivity extends AppCompatActivity {
         String lastWord = "email";
         String text = name + lastWord;
         SpannableString spannableString = new SpannableString(text);
-     // textMailAmdName.setText(name + " " + lastWord);
-
-      //  Spannable spannable = new SpannableString(name+lastWord);
-      //  spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-     //   spannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorAccent)), name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View view) {
-                startActivity(new Intent(Intent.ACTION_SEND));
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"shpakavaa@gmail.com"});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
