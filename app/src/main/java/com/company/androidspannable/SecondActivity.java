@@ -45,9 +45,9 @@ public class SecondActivity extends AppCompatActivity {
             }
         };
          spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimaryDark)), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-          spannableString.setSpan(clickableSpan, name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-      textMailAmdName.setText( spannableString );
-      textMailAmdName.setMovementMethod(LinkMovementMethod.getInstance());
+         spannableString.setSpan(clickableSpan, name.length(), name.length()+lastWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+         textMailAmdName.setText( spannableString );
+         textMailAmdName.setMovementMethod(LinkMovementMethod.getInstance());
         imageView = findViewById(R.id.imageV);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -64,12 +64,4 @@ public class SecondActivity extends AppCompatActivity {
     String subject = "Test";
     String message = "Test";
 
-//    public void sendEmail (View v){
-//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"shpakavaa@gmail.com"});
-//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
-//        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-//        emailIntent.setType("message/rfc822");
-//        startActivity(emailIntent);
-//    }
 }
